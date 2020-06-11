@@ -1,7 +1,7 @@
 import React from 'react'
-import {Card, Container, ListGroup} from "react-bootstrap";
+import {Card, ListGroup} from "react-bootstrap";
 import * as $ from "jquery";
-import API_Request_Handler from "./API_Request_Handler";
+import AlbumPlayer from "./AlbumPlayer";
 
 export default class PlaylistComponent extends React.Component {
 
@@ -15,7 +15,8 @@ export default class PlaylistComponent extends React.Component {
         trackList: {
             track_url: null,
             tracks: []
-        }
+        },
+        play_track: false
     }
 
 
@@ -45,12 +46,12 @@ export default class PlaylistComponent extends React.Component {
                 // console.log(data)
                 let items = data.items
                 let track_list = []
-                // items[index].track. (artists[index].name) or track.name
 
-                items.map((item, index) => {
+                // eslint-disable-next-line array-callback-return
+                items.map(item => {
 
                     let artist_song = []
-
+                    // item.track.uri
                     if (item.track !== null) {
                         artist_song.push(item.track.name)
 
@@ -59,11 +60,14 @@ export default class PlaylistComponent extends React.Component {
                                 artist_song.push(item.track.artists[i].name)
                             }
                         }
+
+                        artist_song.push("https://open.spotify.com/embed/track/" + item.track.uri.slice(14))
                     }
 
                     track_list.push(artist_song)
 
                 })
+
                 this.setState(prevState => ({
                     trackList: {
                         ...prevState.trackList,
@@ -90,19 +94,29 @@ export default class PlaylistComponent extends React.Component {
 
     }
 
-
     render() {
 
 
         if (this.state.playlist.displayTracks) {
             return (
-                <Card className="shadow-lg border-dark text-center mt-5" onClick={this.onClickHandler} style={{ width: '100%', fontFamily: "Muli"}}>
-                    <Card.Title className="lead mt-5"><code>{this.state.playlist.name}</code></Card.Title>
+                <Card className="shadow-lg border-dark text-center mt-5" style={{ width: '100%', fontFamily: "Muli"}}>
+                    <Card.Title onClick={this.onClickHandler} className="lead mt-5"><code>{this.state.playlist.name}</code></Card.Title>
                     <Card.Body>
                         <ListGroup style={{height: "30vh", overflow: "auto"}}>
                             {this.state.trackList.tracks.map( (item, index) => (
-                                <ListGroup.Item action variant="light text-dark" key={index}><strong>{item[0]}</strong> <br/> {item[1]}</ListGroup.Item>
-                            ))}
+
+                                <AlbumPlayer
+                                    key={index}
+                                    item={item[0]}
+                                    item2={item[1]}
+                                    src={item.slice(-1)}
+                                />
+                                // <ListGroup.Item action variant="light text-dark" key={index}>
+                                //
+                                //     <code>{item[0]}</code><br/>{item[1]}
+                                //
+                                // </ListGroup.Item>
+                                ))}
                         </ListGroup>
                     </Card.Body>
                 </Card>
@@ -118,6 +132,7 @@ export default class PlaylistComponent extends React.Component {
                         <Card.Text>
                             {this.state.playlist.description}
                         </Card.Text>
+
                     </Card.Body>
                 </Card>
             )

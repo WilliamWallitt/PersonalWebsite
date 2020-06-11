@@ -17,7 +17,7 @@ class MenuComponent extends React.Component {
                         <Link to="/about" className="nav-link text-dark">About</Link>
                         <Link to="/projects" className="nav-link text-dark">Projects</Link>
                         <Link to="/github" className="nav-link text-dark">GitHub</Link>
-                        <Link to="/spotify" className="nav-link text-dark">Spotify_Project</Link>
+                        <Link to="/spotify" className="nav-link text-dark">Spotify</Link>
 
                     </Nav>
                     <Nav className="ml-auto">

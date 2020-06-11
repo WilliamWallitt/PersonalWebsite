@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import PlaylistComponent from "./PlaylistComponent";
 import ListGroup from "react-bootstrap/ListGroup";
+import AlbumPlayer from "./AlbumPlayer";
 
 
 export default class Spotify_Playlist extends React.Component {
@@ -50,11 +51,11 @@ export default class Spotify_Playlist extends React.Component {
                 this.setState({
                     playlist_data: data
                 })
+
             }
         })
 
        this.onRecentlyPlayedHandler()
-
     }
 
 
@@ -67,9 +68,6 @@ export default class Spotify_Playlist extends React.Component {
             type: "GET",
             beforeSend: xhr => {
                 xhr.setRequestHeader("Authorization", "Bearer " + token);
-            },
-            success: data => {
-
             }
         })
 
@@ -87,6 +85,9 @@ export default class Spotify_Playlist extends React.Component {
             let arr_data = []
 
             for (let i = 0; i < items.length; i++) {
+
+                let track_uri_link = items[i].track.uri.slice(14)
+
                 let item_data = []
                 item_data.push(items[i].track.name)
                 item_data.push(items[i].played_at)
@@ -96,6 +97,8 @@ export default class Spotify_Playlist extends React.Component {
                         item_data.push(items[i].track.artists[j].name)
                     }
                 }
+
+            item_data.push("https://open.spotify.com/embed/track/" + track_uri_link)
 
                 arr_data.push(item_data)
             }
@@ -107,8 +110,6 @@ export default class Spotify_Playlist extends React.Component {
                 recently_played: data
             })
         })
-
-
     }
 
     display_playlist_data_handler = () => {
@@ -121,6 +122,7 @@ export default class Spotify_Playlist extends React.Component {
         } else {
 
             let playlists = playlist_data.items
+
 
             return (
 
@@ -148,6 +150,10 @@ export default class Spotify_Playlist extends React.Component {
 
         let user_data = this.state.user_data
         let current_songs = this.state.recently_played
+
+        // <ListGroup.Item key={index}><code>{item[0] + " : "}</code><strong>{item[2]}</strong><br/> {" Created At: " + item[1].slice(0, 7)}</ListGroup.Item>
+        // <ListGroup.Item key={index}><AlbumPlayer src={item.slice(-1)}/></ListGroup.Item>
+
         if (user_data === null || current_songs === null) {
             return <img src="https://media.giphy.com/media/feN0YJbVs0fwA/giphy.gif" alt="loading..." style={{width: "100%", height: "100%"}}/>
         } else {
@@ -177,14 +183,15 @@ export default class Spotify_Playlist extends React.Component {
                                 <h1 className="display-4 pb-5">Recently Played</h1>
                                 {<ListGroup style={{height: "30vh", width: "60vw", overflow: "auto"}}>
                                     {current_songs.map((item, index) => (
-                                        <ListGroup.Item
-                                            key={index}><code>{item[0] + " : "}</code><strong>{item[2]}</strong><br/> {" Created At: " + item[1].slice(0, 7)}
-                                        </ListGroup.Item>
+                                        <AlbumPlayer key={index} item={item[0]} item1={item[1]} item2={item[2]} src={item.slice(-1)}/>
                                     ))}
                                 </ListGroup>}
                             </Jumbotron>
-
                         </Row>
+
+                        <Row>
+                        </Row>
+
 
                     </Col>
 
