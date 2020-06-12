@@ -2,7 +2,7 @@ import React from 'react'
 import {Container} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import WallpaperSpotify from "../../../Assets/Images/SpotifyWallpaper.jpg"
-// import Spotify_Playlist from "./Spotify_Playlist";
+
 
 import * as $ from "jquery"
 import Spotify_Playlist from "./Spotify_Playlist";
@@ -20,8 +20,6 @@ const image_styling = {
 }
 
 // our main spotify endpoint
-export const authEndpoint = 'https://accounts.spotify.com/authorize';
-
 const clientId = "26ec544d2c734f7a93baacf81d15bd7e";
 const clientSecret = "76299d326a5a4ee582ed5e104b4a180e";
 const redirectUri = "http://localhost:3000/spotify";
@@ -42,38 +40,50 @@ class SpotifyHomePage extends React.Component {
 
     componentDidMount() {
 
-        // this.auth_handler()
+        if (this.state.token === null) {
+            this.setState({
+                token: localStorage.getItem('token')
+            })
+        }
+    }
+
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        localStorage.setItem('token', this.state.token)
     }
 
 
     auth_handler = () => {
+
         let parsed = queryString.parse(window.location.search);
         let accessToken = parsed.code
         let _self = this
 
         try {
+            if (localStorage.getItem('token ') === null) {
+                $.ajax(
+                    {
+                        method: "POST",
+                        url: "https://accounts.spotify.com/api/token",
+                        data: {
+                            "grant_type":    "authorization_code",
+                            "code":          accessToken,
+                            "redirect_uri":  redirectUri,
+                            "client_secret": clientSecret,
+                            "client_id":     clientId,
+                        },
+                        success: function(result) {
+                            _self.setState({
+                                success: true,
+                                token: result.access_token,
+                                refresh: result.refresh_token,
+                                scope: result.scope
+                            })
+                        },
+                    }
+                )
 
-            $.ajax(
-                {
-                    method: "POST",
-                    url: "https://accounts.spotify.com/api/token",
-                    data: {
-                        "grant_type":    "authorization_code",
-                        "code":          accessToken,
-                        "redirect_uri":  redirectUri,
-                        "client_secret": clientSecret,
-                        "client_id":     clientId,
-                    },
-                    success: function(result) {
-                        _self.setState({
-                            success: true,
-                            token: result.access_token,
-                            refresh: result.refresh_token,
-                            scope: result.scope
-                        })
-                    },
-                }
-            )
+            }
 
         } catch (e) {
             console.log(e)
@@ -84,7 +94,7 @@ class SpotifyHomePage extends React.Component {
 
     render() {
 
-        if (this.state.token) {
+        if (this.state.token){
             return (
                 // eslint-disable-next-line react/jsx-pascal-case
                 <Spotify_Playlist
@@ -95,17 +105,19 @@ class SpotifyHomePage extends React.Component {
             )
         }
 
+
         return (
 
             <Container className="d-flex text-center align-items-center justify-content-center" fluid style={{width: "100vw", height: "100vh", fontFamily: "Muli", ...image_styling}}>
 
-                <Button className= "btn-success btn-lg active rounded-lg" href={redirect} onClick={this.auth_handler()}>Log into Spotify</Button>
+                <Button className= "btn-outline-dark btn-large text-dark shadow-lg bg-transparent p-3" href={redirect} onClick={this.auth_handler()}>Log into Spotify</Button>
 
             </Container>
 
         )
     }
 }
+
 
 
 export default SpotifyHomePage

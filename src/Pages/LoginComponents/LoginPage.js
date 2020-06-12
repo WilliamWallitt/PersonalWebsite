@@ -5,8 +5,21 @@ import "../../Assets/Stylesheets/LoginPage.css"
 import Input from "../Components/UI/Input/Input"
 import Container from "react-bootstrap/Container";
 import Button from "../Components/UI/Button/Button"
+import GuassianBlur from "../../Assets/Images/Multicolor_gaussian_blur_gradient_2560x1600.jpg"
 
 import * as actions from "../../Pages/Actions/index"
+
+
+const image_styling = {
+
+    backgroundImage: "url(" + GuassianBlur + ")",
+    height: "95vh",
+    width: "100vw",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+
+}
 
 class LoginPage extends React.Component {
 
@@ -157,7 +170,7 @@ class LoginPage extends React.Component {
 
         return(
 
-            <Container id="main" fluid style={{width: "100vw", height: "95vh", fontFamily: "Muli"}}>
+            <Container id="main" fluid style={{width: "100vw", height: "95vh", fontFamily: "Muli", ...image_styling}}>
                 <div className="wrapper fadeInDown">
                     <div id="formContent">
                         <div className="fadeIn first">

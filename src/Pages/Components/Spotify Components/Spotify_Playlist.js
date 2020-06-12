@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import PlaylistComponent from "./PlaylistComponent";
 import ListGroup from "react-bootstrap/ListGroup";
 import AlbumPlayer from "./AlbumPlayer";
+import SearchPlaylistComponent from "./SearchPlaylistComponent";
 
 
 export default class Spotify_Playlist extends React.Component {
@@ -126,33 +127,30 @@ export default class Spotify_Playlist extends React.Component {
 
             return (
 
-                <Row>
-                    {playlists.map((item, index) => (
-                        <Col className="col-sm-4" key={index}>
-                            <PlaylistComponent
-                                image={item.images[0].url}
-                                name={item.name}
-                                description={item.description}
-                                url={item.tracks.href}
-                                token={this.state.access_token}
-                            />
-                        </Col>
-                    ))}
-                </Row>
-
+                <Container fluid>
+                    <h1 className="display-4 mt-5 p-5 text-center rounded-pill bg-dark text-white shadow-lg">Playlists</h1>
+                    <Row>
+                        {playlists.map((item, index) => (
+                            <Col className="col-sm-4" key={index}>
+                                <PlaylistComponent
+                                    image={item.images[0].url}
+                                    name={item.name}
+                                    description={item.description}
+                                    url={item.tracks.href}
+                                    token={this.state.access_token}
+                                />
+                            </Col>
+                        ))}
+                    </Row>
+                </Container>
             )
-
         }
-
     }
 
     display_user_data_handler = () => {
 
         let user_data = this.state.user_data
         let current_songs = this.state.recently_played
-
-        // <ListGroup.Item key={index}><code>{item[0] + " : "}</code><strong>{item[2]}</strong><br/> {" Created At: " + item[1].slice(0, 7)}</ListGroup.Item>
-        // <ListGroup.Item key={index}><AlbumPlayer src={item.slice(-1)}/></ListGroup.Item>
 
         if (user_data === null || current_songs === null) {
             return <img src="https://media.giphy.com/media/feN0YJbVs0fwA/giphy.gif" alt="loading..." style={{width: "100%", height: "100%"}}/>
@@ -178,10 +176,10 @@ export default class Spotify_Playlist extends React.Component {
 
                         </Row>
 
-                        <Row className="d-flex justify-content-center">
-                            <Jumbotron fluid className="text-center mt-5 bg-transparent shadow-lg">
-                                <h1 className="display-4 pb-5">Recently Played</h1>
-                                {<ListGroup style={{height: "30vh", width: "60vw", overflow: "auto"}}>
+                        <Row className="d-flex justify-content-center mt-5">
+                            <Jumbotron fluid className="text-center bg-transparent shadow-lg">
+                                <h1 className="display-4 mb-5">Recently Played</h1>
+                                {<ListGroup style={{height: "40vh", width: "60vw", overflow: "auto"}}>
                                     {current_songs.map((item, index) => (
                                         <AlbumPlayer key={index} item={item[0]} item1={item[1]} item2={item[2]} src={item.slice(-1)}/>
                                     ))}
@@ -207,6 +205,9 @@ export default class Spotify_Playlist extends React.Component {
 
         return <Container fluid className="bg-light" style={{fontFamily: "Muli"}}>
             <Col>
+                <Row className="bg-dark p-3 rounded-pill">
+                    <SearchPlaylistComponent/>
+                </Row>
                 <Row className="d-flex justify-content-center">
                     {this.display_user_data_handler()}
                 </Row>

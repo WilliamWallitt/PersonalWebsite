@@ -100,7 +100,7 @@ export default class PlaylistComponent extends React.Component {
         if (this.state.playlist.displayTracks) {
             return (
                 <Card className="shadow-lg border-dark text-center mt-5" style={{ width: '100%', fontFamily: "Muli"}}>
-                    <Card.Title onClick={this.onClickHandler} className="lead mt-5"><code>{this.state.playlist.name}</code></Card.Title>
+                    <Card.Title onClick={this.onClickHandler} className="lead mt-5 p-3"><code>{this.state.playlist.name}</code></Card.Title>
                     <Card.Body>
                         <ListGroup style={{height: "30vh", overflow: "auto"}}>
                             {this.state.trackList.tracks.map( (item, index) => (
@@ -111,11 +111,6 @@ export default class PlaylistComponent extends React.Component {
                                     item2={item[1]}
                                     src={item.slice(-1)}
                                 />
-                                // <ListGroup.Item action variant="light text-dark" key={index}>
-                                //
-                                //     <code>{item[0]}</code><br/>{item[1]}
-                                //
-                                // </ListGroup.Item>
                                 ))}
                         </ListGroup>
                     </Card.Body>
