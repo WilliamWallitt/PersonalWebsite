@@ -128,7 +128,10 @@ export default class Spotify_Playlist extends React.Component {
             return (
 
                 <Container fluid>
-                    <h1 className="display-4 mt-5 p-5 text-center rounded-pill bg-dark text-white shadow-lg">Playlists</h1>
+                    <Container className="mt-3 p-5 text-center rounded-pill bg-dark text-white shadow-lg">
+                        <h1 className="display-5">Playlists</h1>
+                        <h1 className="lead">You can click on each playlist to see what songs are in them!</h1>
+                    </Container>
                     <Row>
                         {playlists.map((item, index) => (
                             <Col className="col-sm-4" key={index}>

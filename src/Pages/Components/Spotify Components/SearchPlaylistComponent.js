@@ -1,5 +1,5 @@
 import React from 'react'
-import {Search, Grid} from 'semantic-ui-react'
+import {Search} from 'semantic-ui-react'
 import * as $ from "jquery";
 
 
@@ -58,6 +58,8 @@ export default class SearchPlaylistComponent extends React.Component {
                         result.description = art.name
                     ))
                     d.push(result)
+
+                    return null
                 })
                 this.setState({
                     results: d
