@@ -132,8 +132,10 @@ export default class Spotify_Playlist extends React.Component {
                         <h1 className="display-5">Playlists</h1>
                         <h1 className="lead">You can click on each playlist to see what songs are in them!</h1>
                     </Container>
+
                     <Row>
                         {playlists.map((item, index) => (
+                            window.innerWidth > 690 ?
                             <Col className="col-4" key={index}>
                                 <PlaylistComponent
                                     image={item.images[0].url}
@@ -142,7 +144,14 @@ export default class Spotify_Playlist extends React.Component {
                                     url={item.tracks.href}
                                     token={this.state.access_token}
                                 />
-                            </Col>
+                            </Col> :
+                                <PlaylistComponent
+                                    image={item.images[0].url}
+                                    name={item.name}
+                                    description={item.description}
+                                    url={item.tracks.href}
+                                    token={this.state.access_token}
+                                />
                         ))}
                     </Row>
                 </Container>
