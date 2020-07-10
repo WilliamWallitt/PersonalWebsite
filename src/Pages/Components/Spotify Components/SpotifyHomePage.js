@@ -137,14 +137,13 @@ class SpotifyHomePage extends React.Component {
 
     render() {
 
-        if (!this.auth_handler()){
+        if (!this.auth_handler() && localStorage.getItem("time") !== null){
 
             console.log(localStorage.getItem("time"))
 
             if (localStorage.getItem("token") || this.state.token){
 
                 return (
-                    // eslint-disable-next-line react/jsx-pascal-case
                     <Spotify_Playlist
                         access_token={this.state.token === null ? localStorage.getItem("token") : this.state.token}
                         refresh_token={this.state.refresh}
@@ -155,6 +154,8 @@ class SpotifyHomePage extends React.Component {
 
         } else {
 
+            console.log("sign in")
+
             return (
 
                 <Container className="d-flex text-center align-items-center justify-content-center" fluid style={{width: "100vw", height: "100vh", fontFamily: "Muli", ...image_styling}}>
@@ -164,7 +165,6 @@ class SpotifyHomePage extends React.Component {
                 </Container>
 
             )
-
         }
     }
 }
