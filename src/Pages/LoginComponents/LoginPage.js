@@ -8,6 +8,7 @@ import Button from "../Components/UI/Button/Button"
 import GuassianBlur from "../../assets/Images/Multicolor_gaussian_blur_gradient_2560x1600.jpg"
 
 import * as actions from "../../Pages/Actions/index"
+import Dashboard from "./Dashboard";
 
 
 const image_styling = {
@@ -165,8 +166,8 @@ class LoginPage extends React.Component {
         }
 
         if (this.props.token !== null) {
-            console.log(this.props.token, "TOKEN STUFF")
-            return <h1>Success</h1>
+            // console.log(this.props.token, "TOKEN STUFF")
+            return <Dashboard username={this.state.controls.email.value}/>
         }
 
         return(

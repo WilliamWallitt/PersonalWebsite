@@ -47,29 +47,18 @@ class SpotifyHomePage extends React.Component {
         refresh_token: false
     }
 
+
     componentDidMount() {
 
-        localStorage.getItem("token") !== null && this.setState({
-            token: localStorage.getItem("token")
-        })
+        // localStorage.getItem("token") !== null && this.setState({
+        //     token: localStorage.getItem("token")
+        // })
 
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        let date_object = new Date()
 
-        if (localStorage.getItem("time") === null) {
-            date_object.setHours(date_object.getHours() + 1)
-            let current_time = date_object.getHours() + ":" + date_object.getMinutes() +  ":" +  date_object.getSeconds();
-            localStorage.setItem("time", current_time)
-        } else {
-            let current_time = (date_object.getHours() +  ":" + date_object.getMinutes() +  ":" + date_object.getSeconds()).toString()
-            let expire_time = localStorage.getItem("time").toString()
-            if (current_time.substr(0, 2) >= expire_time.substr(0, 2) && current_time.substr(3, 5) > expire_time.substr(3, 5)){
-                localStorage.removeItem("time")
-                localStorage.removeItem("token")
-            }
-        }
+        this.token_handler()
 
         localStorage.getItem("token") === null && localStorage.setItem('token', this.state.token)
 
@@ -120,29 +109,66 @@ class SpotifyHomePage extends React.Component {
 
     }
 
+
+    token_handler = () => {
+
+        let date_object = new Date()
+
+        // if we don't have a token time
+        if (localStorage.getItem("time") === null) {
+            // add one hour to current time and store it as the token expire time
+            date_object.setHours(date_object.getHours() + 1)
+            let current_time = date_object.getHours() + ":" + date_object.getMinutes() +  ":" +  date_object.getSeconds();
+            localStorage.setItem("time", current_time)
+
+            return false
+        // if we do
+        } else {
+            // we get the current time and compare it - if its greater than the expire time, we need to refresh the token
+            let current_time = (date_object.getHours() +  ":" + date_object.getMinutes() +  ":" + date_object.getSeconds()).toString()
+            let expire_time = localStorage.getItem("time").toString()
+            if (current_time.substr(0, 2) >= expire_time.substr(0, 2) && current_time.substr(3, 5) > expire_time.substr(3, 5)){
+                localStorage.removeItem("time")
+                localStorage.removeItem("token")
+
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+
     render() {
 
-        if (this.state.token){
+        if (!this.auth_handler()){
+
+            if (localStorage.getItem("token") || this.state.token){
+
+                console.log(this.token_handler())
+
+                return (
+                    // eslint-disable-next-line react/jsx-pascal-case
+                    <Spotify_Playlist
+                        access_token={this.state.token === null ? localStorage.getItem("token") : this.state.token}
+                        refresh_token={this.state.refresh}
+                        scope={this.state.scope}
+                    />
+                )
+            }
+
+        } else {
+
             return (
-                // eslint-disable-next-line react/jsx-pascal-case
-                <Spotify_Playlist
-                    access_token={this.state.token}
-                    refresh_token={this.state.refresh}
-                    scope={this.state.scope}
-                />
+
+                <Container className="d-flex text-center align-items-center justify-content-center" fluid style={{width: "100vw", height: "100vh", fontFamily: "Muli", ...image_styling}}>
+
+                    <Button className= "btn-outline-dark btn-large text-dark shadow-lg bg-transparent p-3" href={redirect} onClick={this.auth_handler()}>Log into Spotify</Button>
+
+                </Container>
+
             )
+
         }
-
-
-        return (
-
-            <Container className="d-flex text-center align-items-center justify-content-center" fluid style={{width: "100vw", height: "100vh", fontFamily: "Muli", ...image_styling}}>
-
-                <Button className= "btn-outline-dark btn-large text-dark shadow-lg bg-transparent p-3" href={redirect} onClick={this.auth_handler()}>Log into Spotify</Button>
-
-            </Container>
-
-        )
     }
 }
 
