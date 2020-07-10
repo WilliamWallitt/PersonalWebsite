@@ -8,7 +8,7 @@ export default class Square extends React.Component {
             width: "100%",
             height: "12vw",
             fontFamily: "Arial",
-            fontSize: "5em"
+            fontSize: "inherit"
 
         };
 

@@ -58,10 +58,8 @@ class SpotifyHomePage extends React.Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
 
-        this.token_handler()
-
         localStorage.getItem("token") === null && localStorage.setItem('token', this.state.token)
-
+        this.token_handler()
     }
 
     auth_handler = () => {
@@ -130,7 +128,6 @@ class SpotifyHomePage extends React.Component {
             if (current_time.substr(0, 2) >= expire_time.substr(0, 2) && current_time.substr(3, 5) > expire_time.substr(3, 5)){
                 localStorage.removeItem("time")
                 localStorage.removeItem("token")
-
                 return true
             } else {
                 return false
@@ -142,9 +139,9 @@ class SpotifyHomePage extends React.Component {
 
         if (!this.auth_handler()){
 
-            if (localStorage.getItem("token") || this.state.token){
+            console.log(localStorage.getItem("time"))
 
-                console.log(this.token_handler())
+            if (localStorage.getItem("token") || this.state.token){
 
                 return (
                     // eslint-disable-next-line react/jsx-pascal-case

@@ -109,7 +109,7 @@ export default class Board extends React.Component{
 
         return(
 
-            <Container className="text-center" >
+            <Container className="text-center">
                 <h1>{status}</h1>
                 <Button variant="outline-dark" className="m-3" onClick={this.handleBoardRestart}>Restart</Button>
                 {values.map((val, index) => (<Row key={index}>

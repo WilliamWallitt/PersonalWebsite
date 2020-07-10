@@ -28,7 +28,7 @@ export default class Game extends React.Component {
             <Container className="mt-1 p-0 w-100 h-100">
 
                 <Col>
-                    <Row style={{backgroundColor: "white"}}>
+                    <Row style={{backgroundColor: "white", marginTop: "17vh"}}>
                         <Board grid_size={coords} rows={rows}/>
                     </Row>
                 </Col>
