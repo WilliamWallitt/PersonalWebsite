@@ -35,23 +35,37 @@ class SpotifyHomePage extends React.Component {
         token: null,
         refresh: null,
         scope: null,
-        clicked: false
+        clicked: false,
+        refresh_token: false
     }
 
     componentDidMount() {
 
-        if (this.state.token === null) {
-            this.setState({
-                token: localStorage.getItem('token')
-            })
-        }
-    }
+        localStorage.getItem("token") !== null && this.setState({
+            token: localStorage.getItem("token")
+        })
 
+    }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        localStorage.setItem('token', this.state.token)
-    }
+        let date_object = new Date()
 
+        if (localStorage.getItem("time") === null) {
+            date_object.setHours(date_object.getHours() + 1)
+            let current_time = date_object.getHours() + ":" + date_object.getMinutes() +  ":" +  date_object.getSeconds();
+            localStorage.setItem("time", current_time)
+        } else {
+            let current_time = (date_object.getHours() +  ":" + date_object.getMinutes() +  ":" + date_object.getSeconds()).toString()
+            let expire_time = localStorage.getItem("time").toString()
+            if (current_time.substr(0, 2) >= expire_time.substr(0, 2) && current_time.substr(3, 5) > expire_time.substr(3, 5)){
+                localStorage.removeItem("time")
+                localStorage.removeItem("token")
+            }
+        }
+
+        localStorage.getItem("token") === null && localStorage.setItem('token', this.state.token)
+
+    }
 
     auth_handler = () => {
 
@@ -60,7 +74,8 @@ class SpotifyHomePage extends React.Component {
         let _self = this
 
         try {
-            if (localStorage.getItem('token ') === null) {
+            if (localStorage.getItem("token") === null) {
+
                 $.ajax(
                     {
                         method: "POST",
@@ -79,7 +94,12 @@ class SpotifyHomePage extends React.Component {
                                 refresh: result.refresh_token,
                                 scope: result.scope
                             })
-                        },
+
+                            localStorage.setItem('token', result.access_token)
+
+                        }, error: function(err) {
+                            console.log(err)
+                        }
                     }
                 )
 

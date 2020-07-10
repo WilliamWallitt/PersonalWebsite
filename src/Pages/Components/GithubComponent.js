@@ -12,8 +12,6 @@ export default class GithubComponent extends React.Component {
     API_TOKEN = "550c13a4716aa943d88717b32481ac20009b7cfe"
     GIT_API_URL = "https://api.github.com/users/"
 
-    // WilliamWallitt:550c13a4716aa943d88717b32481ac20009b7cfe https://api.github.com/user/repos
-
     constructor() {
         super();
         this.state = {
@@ -23,21 +21,33 @@ export default class GithubComponent extends React.Component {
 
     async componentDidMount() {
 
-        const response = await fetch(this.props.req)
-        const json = await response.json()
+        if (this.state.data !== null) {
 
-        // lets sort by id
-        json.sort(function(a, b){
-            return b.id - a.id;
-        });
+        }
 
-        this.setState({
-            data: json
-        })
+        if (this.state.data === null) {
 
-        // console.log(json[0].owner.login)
-        } catch(e) {
-            console.log(e)
+
+            try {
+
+                const response = await fetch(this.props.req)
+                const json = await response.json()
+
+                // lets sort by id
+                json.sort(function(a, b){
+                    return b.id - a.id;
+                });
+
+                this.setState({
+                    data: json
+                })
+
+            } catch (e) {
+                console.log(e)
+            }
+
+        }
+
 
     }
 

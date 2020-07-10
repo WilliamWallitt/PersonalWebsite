@@ -1,6 +1,6 @@
 import React from 'react'
 import * as $ from "jquery"
-import {Card, Container, Jumbotron} from "react-bootstrap";
+import {Card, Container} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -128,7 +128,7 @@ export default class Spotify_Playlist extends React.Component {
             return (
 
                 <Container fluid>
-                    <Container className="mt-3 p-5 text-center rounded-pill bg-dark text-white shadow-lg">
+                    <Container fluid className="mt-5 p-3 text-center shadow-lg">
                         <h1 className="display-5">Playlists</h1>
                         <h1 className="lead">You can click on each playlist to see what songs are in them!</h1>
                     </Container>
@@ -180,14 +180,16 @@ export default class Spotify_Playlist extends React.Component {
                         </Row>
 
                         <Row className="d-flex justify-content-center mt-5">
-                            <Jumbotron fluid className="text-center bg-transparent shadow-lg">
-                                <h1 className="display-4 mb-5">Recently Played</h1>
-                                {<ListGroup style={{height: "40vh", width: "60vw", overflow: "auto"}}>
-                                    {current_songs.map((item, index) => (
-                                        <AlbumPlayer key={index} item={item[0]} item1={item[1]} item2={item[2]} src={item.slice(-1)}/>
-                                    ))}
-                                </ListGroup>}
-                            </Jumbotron>
+
+                            <Container fluid className="p-3 m-5 text-center shadow-lg">
+                                <h1 className="display-5">Recently Played</h1>
+                            </Container>
+
+                            {<ListGroup style={{height: "40vh", width: "60vw", overflow: "auto"}}>
+                                {current_songs.map((item, index) => (
+                                    <AlbumPlayer key={index} item={item[0]} item1={item[1]} item2={item[2]} src={item.slice(-1)}/>
+                                ))}
+                            </ListGroup>}`
                         </Row>
 
                         <Row>
@@ -207,8 +209,8 @@ export default class Spotify_Playlist extends React.Component {
     render() {
 
         return <Container fluid className="bg-light" style={{fontFamily: "Muli"}}>
-            <Col>
-                <Row className="bg-dark p-3 rounded-pill">
+            <Col style={{fontFamily: "Muli"}}>
+                <Row className="p-3 m-5 my-auto">
                     <SearchPlaylistComponent/>
                 </Row>
                 <Row className="d-flex justify-content-center">

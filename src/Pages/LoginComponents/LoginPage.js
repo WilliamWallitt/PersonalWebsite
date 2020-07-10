@@ -165,6 +165,7 @@ class LoginPage extends React.Component {
         }
 
         if (this.props.token !== null) {
+            console.log(this.props.token, "TOKEN STUFF")
             return <h1>Success</h1>
         }
 
