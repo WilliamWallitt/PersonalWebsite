@@ -25,8 +25,7 @@ const clientSecret = "76299d326a5a4ee582ed5e104b4a180e";
 
 let redirectUri
 
-
-if (window.location.href.toString() !== "http://localhost:3000/spotify") {
+if (window.location.href.toString().substr(0, 29) !== "http://localhost:3000/spotify") {
     redirectUri = "https://williamwallitt.herokuapp.com/spotify"
 } else {
     redirectUri = "http://localhost:3000/spotify";
