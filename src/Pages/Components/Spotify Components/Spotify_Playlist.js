@@ -172,10 +172,9 @@ export default class Spotify_Playlist extends React.Component {
 
                 <Container className="text-center">
                     <Col>
-
                         <Row className="d-flex justify-content-center">
 
-                            <Card className="shadow-lg border-dark mt-5" style={{ width: '30vw', fontFamily: "Muli"}}>
+                            <Card className="shadow-lg border-dark mt-5" style={{fontFamily: "Muli"}}>
                                 <Card.Img variant="top" src={user_data.images[0].url} />
                                 <Card.Body>
                                     <Card.Title><code>{user_data.display_name + " : " + user_data.country}</code></Card.Title>

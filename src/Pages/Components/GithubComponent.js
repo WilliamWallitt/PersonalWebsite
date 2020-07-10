@@ -56,7 +56,7 @@ export default class GithubComponent extends React.Component {
         if (this.state.data === null) {
             return (
                 <Container className="mt-5 text-center">
-                    <img src="https://media.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif" alt="gif"/>
+                    <img src="https://media.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif" alt="gif" style={{width: "80vw"}}/>
                 </Container>
                 )
         } else {
@@ -81,7 +81,7 @@ export default class GithubComponent extends React.Component {
                             </ListGroup.Item>))}
                     </ListGroup>
 
-                    <Container className="p-5 m-5">
+                    <Container className="p-5 m-5 mx-auto">
                         <Card className="text-center mx-auto rounded-lg shadow-lg" style={{ width: '18rem'}}>
                             <Card.Img variant="top" style={{height: "20vh", objectFit: "cover"}} src={this.state.data[0].owner.avatar_url}/>
                             <Card.Body>
