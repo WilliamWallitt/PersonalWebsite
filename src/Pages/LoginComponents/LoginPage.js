@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from 'react-redux';
 
-import "../../Assets/Stylesheets/LoginPage.css"
+import "../../assets/Stylesheets/LoginPage.css"
 import Input from "../Components/UI/Input/Input"
 import Container from "react-bootstrap/Container";
 import Button from "../Components/UI/Button/Button"
-import GuassianBlur from "../../Assets/Images/Multicolor_gaussian_blur_gradient_2560x1600.jpg"
+import GuassianBlur from "../../assets/Images/Multicolor_gaussian_blur_gradient_2560x1600.jpg"
 
 import * as actions from "../../Pages/Actions/index"
 

@@ -1,14 +1,14 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Carousel from "react-bootstrap/Carousel";
-import AStar from "../Assets/Images/A*Project.png"
-import TicTacToe from "../Assets/Images/TicTac.png"
-import StCezaire from "../Assets/Images/StCez.png"
-import YelpCamp from "../Assets/Images/YelpCamp.png"
+import AStar from "../assets/Images/A*Project.png"
+import TicTacToe from "../assets/Images/TicTac.png"
+import StCezaire from "../assets/Images/StCez.png"
+import YelpCamp from "../assets/Images/YelpCamp.png"
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import '../Assets/Stylesheets/Projects.css';
+import '../assets/Stylesheets/Projects.css';
 
 
 import {

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Container} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import WallpaperSpotify from "../../../Assets/Images/SpotifyWallpaper.jpg"
+import WallpaperSpotify from "../../../assets/Images/SpotifyWallpaper.jpg"
 
 
 import * as $ from "jquery"
