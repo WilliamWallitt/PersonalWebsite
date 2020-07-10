@@ -134,7 +134,7 @@ export default class Spotify_Playlist extends React.Component {
                     </Container>
                     <Row>
                         {playlists.map((item, index) => (
-                            <Col className="col-sm-4" key={index}>
+                            <Col className="col-4" key={index}>
                                 <PlaylistComponent
                                     image={item.images[0].url}
                                     name={item.name}
