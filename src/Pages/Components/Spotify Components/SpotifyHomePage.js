@@ -22,7 +22,16 @@ const image_styling = {
 // our main spotify endpoint
 const clientId = "26ec544d2c734f7a93baacf81d15bd7e";
 const clientSecret = "76299d326a5a4ee582ed5e104b4a180e";
-const redirectUri = "http://localhost:3000/spotify";
+
+let redirectUri
+
+
+if (window.location.href.toString() !== "http://localhost:3000/spotify") {
+    redirectUri = "https://williamwallitt.herokuapp.com/spotify"
+} else {
+    redirectUri = "http://localhost:3000/spotify";
+}
+
 const scopes = 'user-read-private user-read-email playlist-read-private user-library-read playlist-read-collaborative playlist-modify-private user-read-recently-played streaming';
 
 const redirect = 'https://accounts.spotify.com/authorize?response_type=code' +
