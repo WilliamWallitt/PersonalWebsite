@@ -40,6 +40,8 @@ export default class Dashboard extends React.Component {
         let app = await firebase.initializeApp(firebaseConfig);
         database = await app.database()
 
+        // look at token
+
         let data = await this.firebase_request('/ingredients')
         data = Object.keys(data.val())
 
@@ -47,6 +49,8 @@ export default class Dashboard extends React.Component {
         orders = Object.values(orders.data).map(value => {
             return value
         })
+
+
 
         this.setState({
             current_users: data,

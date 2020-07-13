@@ -220,34 +220,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
-
-
-
-
-
-
-
-
-
-// <Container id="main" fluid style={{width: "100vw", height: "95vh", fontFamily: "Muli"}}>
-//     <div className="wrapper fadeInDown">
-//         <div id="formContent">
-//             <div className="fadeIn first">
-//                 <div className="jumbotron m-4 p-4 bg-transparent">
-//                     <h1 className="h3">Admin Login</h1>
-//                 </div>
-//             </div>
-//             <form>
-//                 <input type="text" id="login" className="fadeIn second" name="username" placeholder="username"/>
-//                 <input type="password" id="password" className="fadeIn third" name="password" placeholder="password"/>
-//                 <input type="submit" className="fadeIn fourth" value="Log In"/>
-//             </form>
-//         </div>
-//     </div>
-//
-// </Container>
-
-// <div className="Auth">
-//     {form}
-//     <Button type="Success">Log in</Button>
-// </div>

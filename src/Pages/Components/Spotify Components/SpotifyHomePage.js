@@ -47,14 +47,12 @@ class SpotifyHomePage extends React.Component {
         refresh_token: false
     }
 
-
     componentDidMount() {
+        this.token_handler()
 
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-
-        localStorage.getItem("token") === null && localStorage.setItem('token', this.state.token)
         this.token_handler()
     }
 
@@ -85,7 +83,6 @@ class SpotifyHomePage extends React.Component {
                                 refresh: result.refresh_token,
                                 scope: result.scope
                             })
-
                             localStorage.setItem('token', result.access_token)
 
                         }, error: function(err) {
@@ -110,44 +107,78 @@ class SpotifyHomePage extends React.Component {
 
         // if we don't have a token time
         if (localStorage.getItem("time") === null) {
+            console.log("no-time")
             // add one hour to current time and store it as the token expire time
             date_object.setHours(date_object.getHours() + 1)
             let current_time = date_object.getHours() + ":" + date_object.getMinutes() +  ":" +  date_object.getSeconds();
             localStorage.setItem("time", current_time)
-
-            return false
         // if we do
         } else {
+
             // we get the current time and compare it - if its greater than the expire time, we need to refresh the token
-            let current_time = (date_object.getHours() +  ":" + date_object.getMinutes() +  ":" + date_object.getSeconds()).toString()
+            let current_time = date_object.getHours() +  ":" + date_object.getMinutes() +  ":" + date_object.getSeconds().toString()
             let expire_time = localStorage.getItem("time").toString()
-            if (current_time.substr(0, 2) >= expire_time.substr(0, 2) && current_time.substr(3, 5) > expire_time.substr(3, 5)){
+            let curr_time = this.check_handler(current_time)
+            let exp_time = this.check_handler(expire_time)
+
+            console.log(curr_time, exp_time)
+
+            if (exp_time[0] === "0") {
+                exp_time[0] = "24"
+            }
+
+            let curr_hour = curr_time[0], curr_minute = curr_time[1], exp_hour = exp_time[0], exp_minute = exp_time[1]
+
+            if ((curr_hour >= exp_hour - 1 && curr_minute > exp_minute) && curr_hour <= exp_hour){
+
+                console.log("valid")
+
+            } else {
+
+                console.log("invalid")
                 localStorage.removeItem("time")
                 localStorage.removeItem("token")
-                return true
-            } else {
-                return false
+                this.forceUpdate()
             }
+
         }
+    }
+
+    check_handler = time => {
+
+        let hour = "", minute = ""
+
+        if (time.substr(0, 2).slice(1, 2) === ":"){
+            // time is 0 -> 9
+            hour = time.substr(0, 1)
+            time = time.substr(2, time.length)
+            time.substr(0, 2).slice(1, 2) === ":" ? minute = time.substr(0, 1) : minute = time.substr(0, 2)
+
+        } else {
+            // otherwise the time is 10 - 24
+            hour = time.substr(0, 2)
+            time = time.substr(3, time.length)
+            time.substr(0, 2).slice(1, 2) === ":" ? minute = time.substr(0, 1) : minute = time.substr(0, 2)
+        }
+
+        return [hour, minute]
+
     }
 
     render() {
 
         // if we have a token that hasnt expired and we have the time stored in local storage
 
-        if (!this.token_handler() && localStorage.getItem("time") !== null && localStorage.getItem("token") !== null){
+        if (this.state.token || localStorage.getItem("token")){
+            console.log("good token")
+            return (
 
-            if (localStorage.getItem("token") || this.state.token){
-
-                return (
-
-                    <Spotify_Playlist
-                        access_token={this.state.token === null ? localStorage.getItem("token") : this.state.token}
-                        refresh_token={this.state.refresh}
-                        scope={this.state.scope}
-                    />
-                )
-            }
+                <Spotify_Playlist
+                    access_token={this.state.token === null ? localStorage.getItem("token") : this.state.token}
+                    refresh_token={this.state.refresh}
+                    scope={this.state.scope}
+                />
+            )
 
         } else {
 
