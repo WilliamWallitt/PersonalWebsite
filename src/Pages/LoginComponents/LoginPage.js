@@ -55,7 +55,8 @@ class LoginPage extends React.Component {
                 touched: false
             }
         },
-        isSignUp: true
+        // true
+        isSignUp: false
     }
 
     inputChangedHandler = (event, controlName) => {
@@ -166,8 +167,9 @@ class LoginPage extends React.Component {
         }
 
         if (this.props.token !== null) {
-            // console.log(this.props.token, "TOKEN STUFF")
-            return <Dashboard username={this.state.controls.email.value}/>
+            // we need to store token in backend so when user comesback dont have to login again
+            // eventually...
+            return <Dashboard username={this.state.controls.email.value} token={this.props.token}/>
         }
 
         return(
@@ -177,10 +179,15 @@ class LoginPage extends React.Component {
                     <div id="formContent">
                         <div className="fadeIn first">
                             <div className="jumbotron m-3 p-3 bg-transparent">
-                                <Button type="submit" clicked={() => this.switchAuthModeHandler()}>{
-                                    this.state.isSignUp ? "Sign In" : "Sign Up"}
+                                {/*<Button type="submit" clicked={() => this.switchAuthModeHandler()}>{*/}
+                                {/*    this.state.isSignUp ? "Sign In" : "Sign Up"}*/}
+                                {/*    {this.props.idToken}*/}
+                                {/*</Button>*/}
+
+                                <Button type="submit" clicked={() => this.switchAuthModeHandler()}>Sign In
                                     {this.props.idToken}
                                 </Button>
+
                                 <h1 className="h3">Admin Login</h1>
                                 {errorMessage}
                             </div>

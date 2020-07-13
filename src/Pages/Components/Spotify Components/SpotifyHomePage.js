@@ -50,10 +50,6 @@ class SpotifyHomePage extends React.Component {
 
     componentDidMount() {
 
-        // localStorage.getItem("token") !== null && this.setState({
-        //     token: localStorage.getItem("token")
-        // })
-
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -137,13 +133,14 @@ class SpotifyHomePage extends React.Component {
 
     render() {
 
-        if (!this.auth_handler() && localStorage.getItem("time") !== null){
+        // if we have a token that hasnt expired and we have the time stored in local storage
 
-            console.log(localStorage.getItem("time"))
+        if (!this.token_handler() && localStorage.getItem("time") !== null && localStorage.getItem("token") !== null){
 
             if (localStorage.getItem("token") || this.state.token){
 
                 return (
+
                     <Spotify_Playlist
                         access_token={this.state.token === null ? localStorage.getItem("token") : this.state.token}
                         refresh_token={this.state.refresh}
