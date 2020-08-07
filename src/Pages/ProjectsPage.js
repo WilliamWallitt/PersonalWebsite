@@ -5,6 +5,7 @@ import AStar from "../assets/Images/A*Project.png"
 import TicTacToe from "../assets/Images/TicTac.png"
 import StCezaire from "../assets/Images/StCez.png"
 import YelpCamp from "../assets/Images/YelpCamp.png"
+import PatapapClone from "../assets/Images/patapapclone.png"
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -77,6 +78,20 @@ function ProjectsPage(){
 
                             <Carousel.Caption className="text-dark">
                                 <h3>Tic Tac Toe Game</h3>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+
+                        <Carousel.Item style={carosel_styling}>
+                            <Link to="/projects/clone">
+                                <img
+                                    className="d-block w-100 h-80"
+                                    src={PatapapClone}
+                                    alt="Fifth slide"
+                                />
+                            </Link>
+
+                            <Carousel.Caption className="text-dark">
+                                <h3>Music Visualiser</h3>
                             </Carousel.Caption>
                         </Carousel.Item>
 

@@ -45,6 +45,13 @@ export default function App() {
             return null;
           }}/>
 
+
+          <Route path='/projects/clone' component={() => {
+            window.location.href = 'https://nameless-ravine-50180.herokuapp.com/';
+            return null;
+          }}/>
+
+
           <Route path="/logout" component={Logout}/>
 
           <Route path="/spotify" component={SpotifyHomePage}/>
