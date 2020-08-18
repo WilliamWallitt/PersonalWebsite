@@ -8,108 +8,58 @@ import YelpCamp from "../assets/Images/YelpCamp.png"
 import PatapapClone from "../assets/Images/patapapclone.png"
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-
 import '../assets/Stylesheets/Projects.css';
+import Project from "./Project"
 
-
-import {
-    Link
-} from "react-router-dom";
 import Skills from "./StatelessComponents/Skills";
 
 function ProjectsPage(){
 
-    const carosel_styling = {
-        width: "100%",
-        height: "60vh"
-    }
 
     return (
 
         <Container className="d-flex justify-content-center mt-3" style={{fontFamily: "Muli"}}>
-            <Col>
-                <Row className="text-dark align-items-center">
-                    <Container className="text-center m-3">
-                        <h1 className="h3">Projects</h1>
-                    </Container>
-                </Row>
+            <Col className="mt-5">
 
                 <Row>
 
+                    <div className="intro-wrapper">
+                        <div className="nav-wrapper">
+                            <a href="/">
+                                <div className="dots-wrapper">
+                                    <div id="dot-1" className="browser-dot"/>
+                                    <div id="dot-2" className="browser-dot"/>
+                                    <div id="dot-3" className="browser-dot"/>
+                                </div>
+                            </a>
+
+                            <ul id="navigation">
+                                <li><a>Projects</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </Row>
+
+                <Row>
                     <Carousel className="shadow-lg">
-                        <Carousel.Item style={carosel_styling}>
-                            <Link to="projects/astar">
-                                <img
-                                    className="d-block w-100 h-80"
-                                    src={AStar}
-                                    alt="First slide"
-                                />
-                            </Link>
-
-                            <Carousel.Caption className="text-dark p-1">
-                                <h3>A* Path Finding Visualiser</h3>
-                                <p>An interactive visualiser for a grid search using the A* algorithm</p>
-                            </Carousel.Caption>
+                        <Carousel.Item>
+                            <Project name="A* Path Finding Visualiser" description="An interactive visualiser for a grid search using the A* algorithm" linkTo="projects/astar" image={AStar}/>
                         </Carousel.Item>
-
-                        <Carousel.Item style={carosel_styling}>
-                            <Link to="/projects/yelpcamp">
-                                <img
-                                    className="d-block w-100 h-80"
-                                    src={YelpCamp}
-                                    alt="Second slide"
-                                />
-                            </Link>
-
-                            <Carousel.Caption className="text-light bg-dark">
-                                <h3>Campgrounds Website</h3>
-                                <p>A website where users login and leave reviews of certain campgrounds they visited</p>
-                            </Carousel.Caption>
+                        <Carousel.Item>
+                            <Project name="Campgrounds Website" description="A website where users can login and leave reviews of certain campgrounds they visited" linkTo="projects/yelpcamp" image={YelpCamp}/>
                         </Carousel.Item>
-
-                        <Carousel.Item style={carosel_styling}>
-                            <Link to="/projects/tictactoe">
-                                <img
-                                    className="d-block w-100 h-80"
-                                    src={TicTacToe}
-                                    alt="Third slide"
-                                />
-                            </Link>
-
-                            <Carousel.Caption className="text-dark">
-                                <h3>Tic Tac Toe Game</h3>
-                            </Carousel.Caption>
+                        <Carousel.Item>
+                            <Project name="TicTacToe Game" description="An interactive TicTacToe game people can play on all devices" linkTo="projects/tictactoe" image={TicTacToe}/>
                         </Carousel.Item>
-
-                        <Carousel.Item style={carosel_styling}>
-                            <Link to="/projects/clone">
-                                <img
-                                    className="d-block w-100 h-80"
-                                    src={PatapapClone}
-                                    alt="Fifth slide"
-                                />
-                            </Link>
-
-                            <Carousel.Caption className="text-dark">
-                                <h3>Music Visualiser</h3>
-                            </Carousel.Caption>
+                        <Carousel.Item>
+                            <Project name="Music Visualiser" description="A website that you can make simple beats using your keyboard and it comes with a visualiser for each sound" linkTo="/projects/clone" image={PatapapClone}/>
                         </Carousel.Item>
-
-                        <Carousel.Item style={carosel_styling}>
-                            <Link to="/projects/stcezair">
-                                <img
-                                    className="d-block w-100 h-80"
-                                    src={StCezaire}
-                                    alt="Forth slide"
-                                />
-                            </Link>
-
-                            <Carousel.Caption className="text-light bg-dark">
-                                <h3>Website for Client - House to Rent</h3>
-                            </Carousel.Caption>
+                        <Carousel.Item>
+                            <Project name="Website for a French villa to let during the summer" linkTo="/projects/stcezair" image={StCezaire}/>
                         </Carousel.Item>
-
                     </Carousel>
+
                 </Row>
 
                 <Skills/>
