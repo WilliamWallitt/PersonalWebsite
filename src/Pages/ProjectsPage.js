@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Carousel from "react-bootstrap/Carousel";
 import AStar from "../assets/Images/A*Project.png"
 import TicTacToe from "../assets/Images/TicTac.png"
-import StCezaire from "../assets/Images/StCez.png"
+import StCezaire from "../assets/Images/stcezwebsite.png"
 import YelpCamp from "../assets/Images/YelpCamp.png"
 import PatapapClone from "../assets/Images/patapapclone.png"
 import Row from "react-bootstrap/Row";
@@ -44,6 +44,9 @@ function ProjectsPage(){
                 <Row>
                     <Carousel className="shadow-lg">
                         <Carousel.Item>
+                            <Project name="Holiday home to let website" description="Website for a Client that allows people to book and view their house to let" linkTo="/projects/stcezair" image={StCezaire}/>
+                        </Carousel.Item>
+                        <Carousel.Item>
                             <Project name="A* Path Finding Visualiser" description="An interactive visualiser for a grid search using the A* algorithm" linkTo="projects/astar" image={AStar}/>
                         </Carousel.Item>
                         <Carousel.Item>
@@ -55,9 +58,7 @@ function ProjectsPage(){
                         <Carousel.Item>
                             <Project name="Music Visualiser" description="A website that you can make simple beats using your keyboard and it comes with a visualiser for each sound" linkTo="/projects/clone" image={PatapapClone}/>
                         </Carousel.Item>
-                        <Carousel.Item>
-                            <Project name="Website for a French villa to let during the summer" linkTo="/projects/stcezair" image={StCezaire}/>
-                        </Carousel.Item>
+
                     </Carousel>
 
                 </Row>

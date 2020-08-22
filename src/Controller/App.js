@@ -36,7 +36,7 @@ export default function App() {
           }}/>
 
           <Route path='/projects/stcezair' component={() => {
-            window.location.href = 'https://www.st-cezaire.com/';
+            window.location.href = 'https://stcezaire.herokuapp.com/';
             return null;
           }}/>
 
