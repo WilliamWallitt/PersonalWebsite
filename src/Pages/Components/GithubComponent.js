@@ -9,8 +9,6 @@ import Skills from "../StatelessComponents/Skills";
 
 export default class GithubComponent extends React.Component {
 
-    API_TOKEN = "550c13a4716aa943d88717b32481ac20009b7cfe"
-    GIT_API_URL = "https://api.github.com/users/"
 
     constructor() {
         super();

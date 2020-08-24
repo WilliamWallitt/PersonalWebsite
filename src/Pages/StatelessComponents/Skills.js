@@ -4,7 +4,7 @@ import Container from "react-bootstrap/Container";
 
 export default function Skills() {
     return (
-        <Row style={{width: "80vw"}}>
+        <Row>
             <Container className="mt-5 p-3 text-center rounded-lg shadow-lg" style={{backgroundColor:"rgb(50, 50, 75)"}}>
                 <ul style={{listStyle: "none"}}>
                     <li><h4 className="m-3"><code>Tech</code></h4>

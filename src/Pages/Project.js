@@ -1,9 +1,9 @@
 import React from "react"
-import Carousel from "react-bootstrap/Carousel";
 import '../assets/Stylesheets/project..css';
 import {
     Link
 } from "react-router-dom";
+import {Container} from "react-bootstrap";
 
 export default class project extends React.Component {
 
@@ -17,7 +17,7 @@ export default class project extends React.Component {
     render() {
         return (
 
-            <div className="post" style={{width: "80vw"}}>
+            <div className="post">
                 <Link to={this.state.linkTo}>
                     <img className="thumbnail"
                          src={this.state.image}/>

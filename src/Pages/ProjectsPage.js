@@ -18,11 +18,10 @@ function ProjectsPage(){
 
     return (
 
-        <Container className="d-flex justify-content-center mt-3" style={{fontFamily: "Muli"}}>
+        <Container className="mt-3" style={{fontFamily: "Muli"}}>
             <Col className="mt-5">
 
                 <Row>
-
                     <div className="intro-wrapper">
                         <div className="nav-wrapper">
                             <a href="/">
@@ -34,7 +33,7 @@ function ProjectsPage(){
                             </a>
 
                             <ul id="navigation">
-                                <li><a>Projects</a></li>
+                                <li>Projects</li>
                             </ul>
 
                         </div>
@@ -42,6 +41,7 @@ function ProjectsPage(){
                 </Row>
 
                 <Row>
+
                     <Carousel className="shadow-lg">
                         <Carousel.Item>
                             <Project name="Holiday home to let website" description="Website for a Client that allows people to book and view their house to let" linkTo="/projects/stcezair" image={StCezaire}/>
@@ -61,9 +61,11 @@ function ProjectsPage(){
 
                     </Carousel>
 
+
                 </Row>
 
                 <Skills/>
+
 
             </Col>
 
