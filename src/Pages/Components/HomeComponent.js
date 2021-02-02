@@ -55,6 +55,7 @@ export default class RectAnimation extends React.Component {
         //translate(width/8, height/8);
         p5.rotate(p5.degrees(this.angle));
         p5.fill(192, 178, 157);
+        // p5.fill(0, 0, 0)
         p5.rect(150, 0, 180, this.rectHeight);
     }
 
