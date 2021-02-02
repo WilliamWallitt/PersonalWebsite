@@ -191,15 +191,6 @@ export default class Laptop_Component extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="row text-center" style={{backgroundColor: 'rgba(34, 38, 43, 1)', height:"100vh"}}>
-                    <div className="mt-5 p-5" style={{width: "100vw", fontFamily: "Muli"}}>
-                        <h1 className="h1 mb-2 text-white" style={{fontFamily: "Muli"}}>Contents</h1>
-                        <p className="lead mb-2 text-white" style={{fontFamily: "Muli"}}><code>About page: </code>A little bit about what I am doing, have done and about me</p>
-                        <p className="lead mb-2 text-white" style={{fontFamily: "Muli"}}><code>Projects page: </code>Work and hobby projects I have done</p>
-                        <p className="lead mb-2 text-white" style={{fontFamily: "Muli"}}><code>Github page: </code>Other projects I have created or doing</p>
-                        <p className="lead mb-2 text-white" style={{fontFamily: "Muli"}}><code>Spotify page: </code>Log into spotify to find, search and play your most recent songs and playlists</p>
-                    </div>
-                </div>
             </div>
 
         );

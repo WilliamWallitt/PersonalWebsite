@@ -6,9 +6,8 @@ import {Link} from "react-router-dom";
 function AboutPage(){
 
     return(
-
         <Container className="mt-5 p-5 shadow-lg" style={{fontFamily: "Muli", alignItems: "center"}}>
-            <h1 className="h3">About</h1>
+            <h1å className="h3">About</h1å>
             <hr/>
             <Row>
                 <p className="lead">
@@ -36,13 +35,12 @@ function AboutPage(){
 
             <Row className="text-center mt-5" style={{justifyContent: "center"}}>
                 <Link to="/projects"><div className="btn btn-outline-dark">
-                     View My Projects
+                    View My Projects
                 </div></Link>
 
             </Row>
 
         </Container>
-
     )
 }
 

@@ -9,9 +9,7 @@ class MenuComponent extends React.Component {
     render() {
 
         return (
-            <Navbar className="sticky-top" bg="light">
-                {/*<Navbar.Toggle aria-controls="basic-navbar-nav" />*/}
-                {/*<Navbar.Collapse id="basic-navbar-nav">*/}
+            <Navbar className="sticky-top pl-5" bg="light">
                     <Nav className="mr-auto">
                         <Link to="/" className="nav-link text-dark">Home</Link>
                         <Link to="/about" className="nav-link text-dark">About</Link>
